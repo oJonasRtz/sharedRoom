@@ -1,0 +1,21 @@
+{
+	"name": "Shared Room",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"workspaceFolder": "/workspace",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-dotnettools.csdevkit",
+				"ms-dotnettools.csharp",
+				"ms-dotnettools.vscode-dotnet-runtime",
+				"ms-dotnettools.vscodeintellicode",
+				"ms-dotnettools.blazorwasm-companion",
+				"humao.rest-client",
+				"patcx.vscode-nuget-gallery"
+			]
+		}
+	}
+}

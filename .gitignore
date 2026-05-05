@@ -1,0 +1,49 @@
+# Build
+bin/
+obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# Visual Studio
+.vs/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+packages/
+
+# Env / secrets
+.env
+.env.*
+appsettings.Development.json
+
+# Publish
+publish/
+wwwroot/dist/
+
+# EF Core
+Migrations/*Snapshot.cs
+
+# Node
+node_modules/
+
+# Coverage
+coverage/
+*.coverage
+
+# Temp
+*.tmp
+*.cache
