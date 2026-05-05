@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: ./MusicRooms.Web
+    image: musicrooms-web:latest
+    networks:
+      - "musicrooms-network"
+    ports:
+      - "5117:5117"
+
+  api:
+    build:
+      context: ./MusicRooms.Api
+    image: musicrooms-api:latest
+    networks:
+      - "musicrooms-network"
+    ports:
+      - "5032:5032"
+
+networks:
+  musicrooms-network:
+    driver: bridge
