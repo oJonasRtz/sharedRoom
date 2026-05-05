@@ -17,6 +17,19 @@ services:
     ports:
       - "5032:5032"
 
+  apache:
+    image: httpd:latest
+    networks:
+      - "musicrooms-network"
+    ports:
+      - "80:80"
+    volumes:
+      - ./server/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./server/vhosts.conf:/usr/local/apache2/conf/extra/vhosts.conf
+    depends_on:
+      - web
+      - api
+
 networks:
   musicrooms-network:
     driver: bridge
