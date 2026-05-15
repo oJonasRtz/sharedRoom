@@ -6,7 +6,8 @@ class Routes
 	{
 		controlers = new List<Controler>()
 		{
-			new TestsController()
+			new TestsController(),
+			new UserController()
 		};
 	}
 	public void Load(WebApplication app)
