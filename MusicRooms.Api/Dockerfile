@@ -1,12 +1,18 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-WORKDIR /app
+WORKDIR /src
 
 COPY . .
 
 RUN dotnet restore
-RUN dotnet build
+RUN dotnet publish -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+WORKDIR /app
+
+COPY --from=build /app/publish .
 
 EXPOSE 5032
 
-CMD ["dotnet", "run", "--urls=http://*:5032"]
+ENTRYPOINT ["dotnet", "MusicRooms.Api.dll", "--urls=http://0.0.0.0:5032"]

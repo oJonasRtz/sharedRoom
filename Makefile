@@ -11,7 +11,7 @@ down:
 
 build:
 	@echo "Building the application..."
-	@docker compose build
+	@docker compose build --no-cache
 
 clean:
 	@echo "Clearing the application data..."
