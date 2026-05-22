@@ -9,9 +9,25 @@ down:
 	@echo "Stopping the application..."
 	@docker compose down
 
-build:
+build: certs env
 	@echo "Building the application..."
 	@docker compose build --no-cache
+
+certs:
+	@echo "Generating SSL certificates..."
+	@bash ./scripts/cert.sh
+
+env:
+	@missing=0; \
+	for dir in MusicRooms.Api MusicRooms.Web; do \
+		if [ ! -f "$$dir/.env" ]; then \
+			echo "Error: Missing .env file in $$dir"; \
+			missing=1; \
+		fi; \
+	done; \
+	if [ $$missing -eq 1 ]; then \
+		bash ./scripts/envs.sh; \
+	fi
 
 clean:
 	@echo "Clearing the application data..."
@@ -26,4 +42,4 @@ fclean: clean
 
 re: down up
 
-.PHONY: all up down re
+.PHONY: all up down re certs env build clean fclean

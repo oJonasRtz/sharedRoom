@@ -23,9 +23,11 @@ services:
       - "musicrooms-network"
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./server/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./server/vhosts.conf:/usr/local/apache2/conf/extra/vhosts.conf
+      - ./server/certs:/certs:ro
     depends_on:
       - web
       - api
