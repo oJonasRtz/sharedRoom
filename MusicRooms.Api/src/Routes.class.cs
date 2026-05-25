@@ -15,8 +15,10 @@ class Routes
 		foreach (var controler in controlers)
 		{
 			var routeHandlers = controler.Load(app);
-			foreach (var route in routeHandlers)
+			foreach (var route in routeHandlers) {
+				app.MapPost(route.Key, route.Value);
 				app.MapGet(route.Key, route.Value);
+			}
 		}
 	}
 }
