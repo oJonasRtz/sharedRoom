@@ -1,14 +1,17 @@
 all: up
 
-up: build
+up: build show-url
 	@echo "Starting the application..."
 	@docker compose up -d
-	@echo "Tunnel URL:"
-	@docker compose logs cloudflared | grep -o 'https://[-a-zA-Z0-9]*\.trycloudflare\.com' | tail -1
 
 down:
 	@echo "Stopping the application..."
 	@docker compose down
+
+show-url:
+	@echo "Tunnel URL:"
+	@docker compose logs cloudflared | grep -o 'https://[-a-zA-Z0-9]*\.trycloudflare\.com' | tail -1
+	@echo "Note: It may take a few seconds for the tunnel URL to appear. If you don't see it, try running 'make show-url' again after a moment."
 
 build: certs env
 	@echo "Building the application..."
@@ -59,4 +62,4 @@ remake:
 
 re: remake
 
-.PHONY: all up down re remake certs env build clean fclean
+.PHONY: all up down re remake certs env build clean fclean show-url

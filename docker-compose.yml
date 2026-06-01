@@ -7,6 +7,7 @@ services:
       - "musicrooms-network"
     ports:
       - "5117:5117"
+    restart: unless-stopped
 
   api:
     build:
@@ -16,6 +17,7 @@ services:
       - "musicrooms-network"
     ports:
       - "5032:5032"
+    restart: unless-stopped
 
   apache:
     image: httpd:latest
@@ -31,6 +33,8 @@ services:
     depends_on:
       - web
       - api
+    restart: unless-stopped
+
   cloudflared:
     image: cloudflare/cloudflared:latest
     command: tunnel --url http://apache:80
