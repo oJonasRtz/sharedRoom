@@ -16,7 +16,7 @@ public class Auth
 	}
 	
 
-	public async Task<string?> EnsureAuth()
+	public async Task<string?> getUser()
 	{
 		var context = _httpContextAccessor.HttpContext;
 		if (context == null)
@@ -46,17 +46,9 @@ public class Auth
 			Expires = DateTimeOffset.UtcNow.AddHours(20)
 		});
 
-		context.Response.Cookies.Append("nickname", auth.Nickname, new CookieOptions
-		{
-			HttpOnly = false,
-			Secure = true,
-			SameSite = SameSiteMode.Strict,
-			Expires = DateTimeOffset.UtcNow.AddHours(20)
-		});
-
 		_http.DefaultRequestHeaders.Authorization =
 			new AuthenticationHeaderValue("Bearer", auth.Token);
 
-		return auth.Token;
+		return auth.Nickname;
 	}
 }

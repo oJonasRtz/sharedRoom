@@ -171,6 +171,7 @@
 
 @code {
 
+	private string? Nickname;
 	private IBrowserFile? selectedFile;
 	private string? thumbnailPreviewUrl;
 
@@ -179,8 +180,9 @@
 	private bool isPrivate => selectedVisibility == "private";
 
 	protected override async Task OnInitializedAsync(){
-		var token = await AuthService.EnsureAuth();
-		Console.WriteLine($"Token: {token}");
+		string? nickname = await AuthService.getUser();
+		Nickname = nickname;
+		Console.WriteLine($"Nickname: {nickname}");
 	}
 
 	private async Task OnFileSelected(InputFileChangeEventArgs e)

@@ -5,8 +5,6 @@ services:
     image: musicrooms-web:latest
     networks:
       - "musicrooms-network"
-    ports:
-      - "5117:5117"
     restart: unless-stopped
 
   api:
@@ -15,17 +13,12 @@ services:
     image: musicrooms-api:latest
     networks:
       - "musicrooms-network"
-    ports:
-      - "5032:5032"
     restart: unless-stopped
 
   apache:
     image: httpd:latest
     networks:
       - "musicrooms-network"
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./server/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./server/vhosts.conf:/usr/local/apache2/conf/extra/vhosts.conf
